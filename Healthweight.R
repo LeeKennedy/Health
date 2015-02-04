@@ -1,10 +1,10 @@
 weight <- read.csv("Healthcheck.csv", header = TRUE)
-weight1 <- weight[,c(1,7)]
+weight1 <- weight[,c(1,8)]
 weight1 <- na.omit(weight1)
 weight2 <- weight1[1400:nrow(weight1),]
-weight3 <- weight[,c(4,7)]
+weight3 <- weight[,c(4,8)]
 weight3 <- na.omit(weight3)
-weight4 <-weight[,c(1,7:9)]
+weight4 <-weight[,c(1,8:10)]
 height <- 1.89
 BMI <- (weight4$Weight)/(height^2)
 w2h <- weight4$Waist/weight4$Hips
@@ -15,7 +15,7 @@ library(ggplot2)
 #Weight over recent time
 ggplot(weight2, aes(Index,Weight)) + 
   geom_point(colour = "blue", size = 3) + 
-  geom_smooth(colour = "darkgreen") + 
+  geom_smooth(method=loess, colour = "darkgreen") + 
   ggtitle("Weight") +
   ylim(85,95)
 
@@ -26,7 +26,10 @@ ggplot(weight1, aes(Index,Weight)) +
   ggtitle("Weight") +
   ylim(85,105)
 
-boxplot(Weight ~ Year, data = weight3)
+colors = c(rep("cornflowerblue",9),rep("limegreen",1))
+boxplot(Weight ~ Year, 
+        data = weight3,
+        col = colors)
 
 #Waist to Hip Ratio
 ggplot(weight5[2400:nrow(weight5),], aes(x = Index, y = w2h)) + 
