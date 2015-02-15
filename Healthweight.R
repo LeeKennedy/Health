@@ -17,7 +17,7 @@ ggplot(weight2, aes(Index,Weight)) +
   geom_point(colour = "blue", size = 3) + 
   geom_smooth(method=loess, colour = "darkgreen") + 
   ggtitle("Weight") +
-  ylim(85,95)
+  ylim(85,98)
 
 #Weight over longer time
 ggplot(weight1, aes(Index,Weight)) + 
