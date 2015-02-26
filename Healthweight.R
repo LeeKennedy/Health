@@ -30,6 +30,8 @@ colors = c(rep("cornflowerblue",9),rep("limegreen",1))
 boxplot(Weight ~ Year, 
         data = weight3,
         col = colors)
+abline(h=94, lty=2, col="red")
+
 
 #Waist to Hip Ratio
 ggplot(weight5[2400:nrow(weight5),], aes(x = Index, y = w2h)) + 
@@ -38,7 +40,7 @@ ggplot(weight5[2400:nrow(weight5),], aes(x = Index, y = w2h)) +
   ggtitle("Waist to Hip Ratio")
 
 #BMI
-ggplot(weight5[2400:nrow(weight5),], aes(x = Index, y = BMI)) + 
+ggplot(weight5[2000:nrow(weight5),], aes(x = Index, y = BMI)) + 
   geom_point() + 
   geom_smooth(colour = "blue") +
   ggtitle("BMI")
