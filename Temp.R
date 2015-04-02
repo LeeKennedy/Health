@@ -4,18 +4,14 @@ library(lubridate)
 library(tidyr)
 data <- read.csv("BP.csv", as.is=TRUE, header=TRUE, skip=18)
 
-data1 <- select(data, everything())%>%
-        mutate(Systolic = as.numeric(as.character(X)), Diastolic = as.numeric(as.character(X.1)))
+data1 <- select(data, Date, Temp.1, Temp.2, Temp.3)%>%
+        mutate(Temp.1 = as.numeric(as.character(Temp.1)), Temp.2 = as.numeric(as.character(Temp.2)),Temp.3 = as.numeric(as.character(Temp.3)))%>%
+        mutate(Ave.Temp = (Temp.1 + Temp.2 + Temp.3)/3)%>%
+        na.omit
 
-data2 <- data1[,c(1,16,17)]
+data1$Date <- dmy(data1$Date)
 
-data1 <- na.omit(data1)
-
-
-
-data2$Date <- dmy(data2$Date)
-
-data3 <- gather(data2, Type, Reading, -Date)
+data3 <- gather(data1, Type, Reading, -Date)
 
 plot <- ggplot(data3, aes(Date, Reading, colour = Type)) +
         geom_point(size=4, shape=21) +
