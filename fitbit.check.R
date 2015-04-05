@@ -19,7 +19,7 @@ ggplot(df) + geom_bar(aes(x=time, y=data, fill=data), stat="identity") +
               legend.position="none") 
 
 #### Daily Data -------------------------------------------------
-df <- get_daily_data(cookie, what="steps", start_date="2015-01-14", end_date="2015-02-18")  
+df <- get_daily_data(cookie, what="steps", start_date="2015-03-24", end_date="2015-04-02")  
 write.csv(df,"dailysteps.csv", row.names=FALSE)
 library("ggplot2")  
 ggplot(df) + geom_bar(aes(x=time, y=data), stat="identity") + 
