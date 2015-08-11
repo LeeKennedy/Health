@@ -1,8 +1,8 @@
 
 library(ggplot2)
-library(XLConnect)
+library(readxl)
 
-weight <- readWorksheet(loadWorkbook("Healthcheck.xlsx"), sheet=1)
+weight <- read_excel("Healthcheck.xlsx", sheet=1)
 
 #weight <- read.csv("Healthcheck.csv", header = TRUE)
 weight1 <- weight[,c(1,8)]
