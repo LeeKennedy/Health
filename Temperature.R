@@ -14,9 +14,12 @@ data1 <- select(data, Date, Temp.1, Temp.2, Temp.3)%>%
         na.omit
 
 data1$Date <- ymd(data1$Date)
+data1 <- data1[,c(1:4)]
+
 
 data3 <- gather(data1, Type, Reading, -Date)
 
+dev.off()
 plot <- ggplot(data3, aes(Date, Reading, colour = Type)) +
         geom_point(size=4, shape=21) +
         geom_smooth(lwd=1) +

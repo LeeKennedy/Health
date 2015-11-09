@@ -6,7 +6,7 @@ mypassword <- as.character("1yKVO7HW6TJL")
 cookie <- login(email="mail@leekennedy.id.au", password="1yKVO7HW6TJL") 
 
 # Get 15min data ------------------------------------------------------------------------
-df <- get_15_min_data(cookie, what="steps", date="2015-05-08")  
+df <- get_intraday_data(cookie, what="steps", date="2015-05-08")  
 library("ggplot2")  
 ggplot(df) + geom_bar(aes(x=time, y=data, fill=data), stat="identity") + 
         xlab("") +ylab("steps") + 
@@ -19,7 +19,7 @@ ggplot(df) + geom_bar(aes(x=time, y=data, fill=data), stat="identity") +
               legend.position="none") 
 
 #### Daily Data -------------------------------------------------
-df <- get_daily_data(cookie, what="steps", start_date="2015-05-08", end_date="2015-07-15")  
+df <- get_daily_data(cookie, what="steps", start_date="2015-11-01", end_date="2015-11-16")  
 write.csv(df,"dailysteps.csv", row.names=FALSE)
 library("ggplot2")  
 ggplot(df) + geom_bar(aes(x=time, y=data), stat="identity") + 
