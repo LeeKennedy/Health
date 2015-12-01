@@ -44,9 +44,10 @@ abline(h=94, lty=2, col="red")
 
 #Waist to Hip Ratio
 ggplot(weight5[2400:nrow(weight5),], aes(x = Index, y = w2h)) + 
-        geom_point() +
+        geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 4) +
         geom_smooth(colour = "darkgreen") +
-        ggtitle("Waist to Hip Ratio")
+        ggtitle("Waist to Hip Ratio") +
+        theme_bw()
 
 #BMI
 ggplot(weight5[2000:nrow(weight5),], aes(x = Index, y = BMI)) + 

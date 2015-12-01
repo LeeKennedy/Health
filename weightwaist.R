@@ -1,11 +1,13 @@
-ww <- read.csv("w2w.csv", as.is= TRUE, header=TRUE)
 library(ggplot2)
+library(readxl)
 
-ww$Waist <- sapply(ww$Waist, as.numeric)
+weight <- read_excel("Healthcheck.xlsx", sheet=1)
+w2w <- na.omit(weight[,c(8,9)])
 
-fit <- lm(ww$Waist~ww$Weight)
+fit <- lm(w2w$Waist~w2w$Weight)
 summary(fit)
 
-ggplot(ww, aes(x=Waist, y=Weight)) +
-      geom_point(color="blue",size=4, alpha=0.25) +
-      geom_smooth(method=lm)
+ggplot(w2w, aes(x=Waist, y=Weight)) +
+        geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 4, alpha=0.25) +
+        geom_smooth(method=lm) +
+        theme_bw()
