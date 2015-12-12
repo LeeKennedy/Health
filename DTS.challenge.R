@@ -8,7 +8,6 @@ weight2 <- weight %>%
         filter(Date >"2015-11-30") %>%
         filter(Date <"2016-02-02")
 
-
 dev.off()
 
 #Weight 
