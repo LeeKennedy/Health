@@ -14,6 +14,7 @@ dev.off()
 #Weight 
 plot_wt <- ggplot(weight2, aes(Date,Weight)) + 
                 geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 4) + 
+                geom_point(aes(Date,Target), shape = 19, colour = "darkgreen", size = 1) + 
                 geom_smooth(method=loess, colour = "darkgreen") + 
                 geom_abline(slope = 0, intercept = 95.3, lty=2, col="red") +
                 geom_abline(slope = 0, intercept = 85, lty=2, col="red") +
