@@ -17,8 +17,8 @@ plot_wt <- ggplot(weight2, aes(Date,Weight)) +
                 geom_smooth(method=loess, colour = "darkgreen") + 
                 geom_abline(slope = 0, intercept = 95.3, lty=2, col="red") +
                 geom_abline(slope = 0, intercept = 85, lty=2, col="red") +
-                ggtitle("Weight") +
-                ylim(82,98) +
+                ggtitle("Weight during DTS Greatest Loser Challenge\n") +
+                ylim(82,96) +
                 theme_bw()
 plot_wt
 
