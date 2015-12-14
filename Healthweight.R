@@ -39,7 +39,7 @@ colors = c(rep("cornflowerblue",9),rep("limegreen",1))
 boxplot(Weight ~ Year, 
         data = weight3,
         col = colors)
-abline(h=93.1, lty=2, col="red")
+abline(h=92.2, lty=2, col="red")
 
 
 #Waist to Hip Ratio
