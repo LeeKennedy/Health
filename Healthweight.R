@@ -7,7 +7,7 @@ weight <- read_excel("Healthcheck.xlsx", sheet=1)
 #weight <- read.csv("Healthcheck.csv", header = TRUE)
 weight1 <- weight[,c(1,2,8)]
 weight1 <- na.omit(weight1)
-weight2 <- weight1[1600:nrow(weight1),]
+weight2 <- weight1[1660:nrow(weight1),]
 weight3 <- weight[,c(4,8)]
 weight3 <- na.omit(weight3)
 weight4 <-weight[,c(1,2,8:10)]
@@ -27,6 +27,7 @@ ggplot(weight2, aes(Date,Weight)) +
   ylim(85,98) +
         theme_bw()
 
+dev.off()
 #Weight over longer time
 ggplot(weight1, aes(Date,Weight)) + 
         geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 4) +
@@ -38,12 +39,22 @@ ggplot(weight1, aes(Date,Weight)) +
 colors = c(rep("cornflowerblue",9),rep("limegreen",1))
 boxplot(Weight ~ Year, 
         data = weight3,
+        whisklty = 1,
+        range = 0,
         col = colors)
-abline(h=92.2, lty=2, col="red")
+abline(h=91.4, lty=2, col="red")
 
 
 #Waist to Hip Ratio
 ggplot(weight5[1000:nrow(weight5),], aes(x = Date, y = w2h)) + 
+        geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 4) +
+        geom_smooth(colour = "darkgreen") +
+        ggtitle("Waist to Hip Ratio") +
+        geom_abline(slope=0, intercept=0.9, lty=2, col="red") +
+        theme_bw()
+
+#Waist to Hip Ratio 2015
+ggplot(weight5[3000:nrow(weight5),], aes(x = Date, y = w2h)) + 
         geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 4) +
         geom_smooth(colour = "darkgreen") +
         ggtitle("Waist to Hip Ratio") +

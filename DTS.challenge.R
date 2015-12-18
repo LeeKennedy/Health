@@ -8,7 +8,7 @@ weight2 <- weight %>%
         filter(Date >"2015-11-30") %>%
         filter(Date <"2016-02-02")
 
-dev.off()
+#dev.off()
 
 #Weight 
 plot_wt <- ggplot(weight2, aes(Date,Weight)) + 
