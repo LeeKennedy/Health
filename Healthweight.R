@@ -24,7 +24,7 @@ ggplot(weight2, aes(Date,Weight)) +
   geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 4) + 
   geom_smooth(method=loess, colour = "darkgreen") + 
   ggtitle("Weight") +
-  ylim(85,98) +
+  ylim(83,98) +
         theme_bw()
 
 dev.off()
@@ -33,16 +33,17 @@ ggplot(weight1, aes(Date,Weight)) +
         geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 4) +
   geom_smooth(colour = "darkgreen") + 
   ggtitle("Weight") +
-  ylim(85,105) +
+  ylim(83,105) +
         theme_bw()
 
 colors = c(rep("cornflowerblue",9),rep("limegreen",1))
 boxplot(Weight ~ Year, 
         data = weight3,
+        ylim = c(83,101),
         whisklty = 1,
         range = 0,
         col = colors)
-abline(h=91.4, lty=2, col="red")
+abline(h=90.4, lty=2, col="red")
 
 
 #Waist to Hip Ratio
@@ -57,6 +58,7 @@ ggplot(weight5[1000:nrow(weight5),], aes(x = Date, y = w2h)) +
 ggplot(weight5[3000:nrow(weight5),], aes(x = Date, y = w2h)) + 
         geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 4) +
         geom_smooth(colour = "darkgreen") +
+        scale_y_continuous(limits = c(0.88,0.99)) +
         ggtitle("Waist to Hip Ratio") +
         geom_abline(slope=0, intercept=0.9, lty=2, col="red") +
         theme_bw()

@@ -6,7 +6,7 @@ library(dplyr)
 weight <- read_excel("Healthcheck.xlsx", sheet=1)
 weight2 <- weight %>%
         filter(Date >"2015-11-30") %>%
-        filter(Date <"2016-02-02")
+        filter(Date <"2016-02-09")
 
 #dev.off()
 
@@ -16,7 +16,7 @@ plot_wt <- ggplot(weight2, aes(Date,Weight)) +
                 geom_point(aes(Date,Target), shape = 19, colour = "darkgreen", size = 1) + 
                 geom_smooth(method=loess, colour = "darkgreen") + 
                 geom_abline(slope = 0, intercept = 95.3, lty=2, col="red") +
-                geom_abline(slope = 0, intercept = 85, lty=2, col="red") +
+                geom_abline(slope = 0, intercept = 84, lty=2, col="red") +
                 ggtitle("Weight during DTS Greatest Loser Challenge\n") +
                 ylim(82,96) +
                 theme_bw()
