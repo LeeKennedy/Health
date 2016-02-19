@@ -2,16 +2,16 @@ library(dplyr)
 library(ggplot2)
 library(lubridate)
 library(tidyr)
-library(xlsx)
+library(readxl)
 #data <- read.csv("BP.csv", as.is=TRUE, header=TRUE, skip=18)
-data <- read.xlsx("Healthcheck.xlsx",2, startRow=19, header=TRUE)
+data <- read_excel("Healthcheck.xlsx",2, skip=18)
 
 data1 <- select(data, everything())%>%
         mutate(Systolic = as.numeric(as.character(A)), 
-               Diastolic = as.numeric(as.character(B)))%>%
-        na.omit
+               Diastolic = as.numeric(as.character(B)))
 
 data2 <- data1[,c(1,16,17)]
+data2 <- na.omit(data2)
 
 data2$Date <- ymd(data2$Date)
 

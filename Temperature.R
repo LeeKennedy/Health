@@ -2,20 +2,19 @@ library(dplyr)
 library(ggplot2)
 library(lubridate)
 library(tidyr)
-library(xlsx)
+library(readxl)
 #data <- read.csv("BP.csv", as.is=TRUE, header=TRUE, skip=18)
-data <- read.xlsx("Healthcheck.xlsx",2, startRow=19, header=TRUE)
+data <- read_excel("Healthcheck.xlsx",2, skip=18)
 
-data1 <- select(data, Date, Temp.1, Temp.2, Temp.3)%>%
-        mutate(Temp.1 = as.numeric(as.character(Temp.1)), 
-               Temp.2 = as.numeric(as.character(Temp.2)),
-               Temp.3 = as.numeric(as.character(Temp.3)))%>%
-        mutate(Ave.Temp = (Temp.1 + Temp.2 + Temp.3)/3)%>%
-        na.omit
+data1 <- select(data, Date, Temp1, Temp2, Temp3)%>%
+        mutate(Temp1 = as.numeric(as.character(Temp1)), 
+               Temp2 = as.numeric(as.character(Temp2)),
+               Temp3 = as.numeric(as.character(Temp3)))%>%
+        mutate(Ave.Temp = (Temp1 + Temp2 + Temp3)/3)
 
 data1$Date <- ymd(data1$Date)
 data1 <- data1[,c(1:4)]
-
+data1 <- na.omit(data1)
 
 data3 <- gather(data1, Type, Reading, -Date)
 
