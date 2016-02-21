@@ -1,6 +1,7 @@
 #devtools::install_github("corynissen/fitbitScraper")  
 #devtools::install_github("corynissen/fitbitScraper", ref="dev")
 library("fitbitScraper")
+
 # just reading from file to hide pw and to make .Rmd document to work...
 mypassword <- as.character("1yKVO7HW6TJL")
 cookie <- login(email="mail@leekennedy.id.au", password="1yKVO7HW6TJL") 
@@ -19,7 +20,7 @@ ggplot(df) + geom_bar(aes(x=time, y=steps), stat="identity") +
               legend.position="none") 
 
 #### Daily Data -------------------------------------------------
-df <- get_daily_data(cookie, what="steps", start_date="2015-11-01", end_date="2015-11-30")  
+df <- get_daily_data(cookie, what="steps", start_date="2015-11-01", end_date="2016-02-20")  
 write.csv(df,"dailysteps.csv", row.names=FALSE)
 library("ggplot2")  
 ggplot(df) + geom_bar(aes(x=time, y=steps), stat="identity") + 

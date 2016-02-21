@@ -1,9 +1,7 @@
+library(ProjectTemplate)
+load.project()
 
-library(ggplot2)
-library(readxl)
-library(dplyr)
-
-weight <- read_excel("Healthcheck.xlsx", sheet=1)
+weight <- read_excel("data/Healthcheck.xlsx", sheet=1)
 weight2 <- weight %>%
         filter(Date >"2015-11-30") %>%
         filter(Date <"2016-03-29")
@@ -13,7 +11,6 @@ weight2 <- weight %>%
 #Weight 
 plot_wt <- ggplot(weight2, aes(Date,Weight)) + 
                 geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 8) + 
-                #geom_line(aes(Date,Target), colour = "darkgreen", size = 1, lty = 2) + 
                 geom_smooth(method=loess, colour = "darkgreen", size = 2) + 
                 geom_hline(yintercept = 95.3, lty=2, col="red") +
                 geom_hline(yintercept = 84, lty=2, col="red") +

@@ -1,7 +1,5 @@
-
-library(ggplot2)
-library(readxl)
-library(lubridate)
+library(ProjectTemplate)
+load.project()
 
 weight <- read_excel("Healthcheck.xlsx", sheet=1)
 
@@ -31,7 +29,7 @@ ggplot(weight2, aes(Date,Weight)) +
   ylim(83,98) +
         theme_bw()
 
-dev.off()
+
 #Weight over longer time
 ggplot(weight1, aes(Date,Weight)) + 
         geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 4) +

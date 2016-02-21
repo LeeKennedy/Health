@@ -1,9 +1,6 @@
-library(dplyr)
-library(ggplot2)
-library(lubridate)
-library(tidyr)
-library(readxl)
-#data <- read.csv("BP.csv", as.is=TRUE, header=TRUE, skip=18)
+library(ProjectTemplate)
+load.project()
+
 data <- read_excel("Healthcheck.xlsx",2, skip=18)
 
 data1 <- select(data, Date, Temp1, Temp2, Temp3)%>%
