@@ -1,7 +1,7 @@
 library(ProjectTemplate)
 load.project()
 
-weight <- read_excel("data/Healthcheck.xlsx", sheet=1)
+weight <- read_excel("datafile/Healthcheck.xlsx", sheet=1)
 weight2 <- weight %>%
         filter(Date >"2015-11-30") %>%
         filter(Date <"2016-03-29")

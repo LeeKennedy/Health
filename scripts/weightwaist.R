@@ -1,7 +1,7 @@
 library(ProjectTemplate)
 load.project()
 
-weight <- read_excel("data/Healthcheck.xlsx", sheet=1)
+weight <- read_excel("datafile/Healthcheck.xlsx", sheet=1)
 w2w <- na.omit(weight[,c(8,9)])
 
 fit <- lm(w2w$Waist~w2w$Weight)
