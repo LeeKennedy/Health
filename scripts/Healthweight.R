@@ -1,7 +1,7 @@
 library(ProjectTemplate)
 load.project()
 
-weight <- read_excel("datafile/Healthcheck.xlsx", sheet=1)
+weight <- read_excel("rawdata/Healthcheck.xlsx", sheet=1)
 
 #weight <- read.csv("Healthcheck.csv", header = TRUE)
 weight1 <- weight[,c(1,2,8)]

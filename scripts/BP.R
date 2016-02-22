@@ -1,7 +1,7 @@
 library(ProjectTemplate)
 load.project()
 
-data <- read_excel("datafile/Healthcheck.xlsx",2, skip=18)
+data <- read_excel("rawdata/Healthcheck.xlsx",2, skip=18)
 
 data1 <- select(data, everything())%>%
         mutate(Systolic = as.numeric(as.character(A)), 

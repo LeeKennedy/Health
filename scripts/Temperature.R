@@ -1,7 +1,7 @@
 library(ProjectTemplate)
 load.project()
 
-data <- read_excel("datafile/Healthcheck.xlsx",2, skip=18)
+data <- read_excel("rawdata/Healthcheck.xlsx",2, skip=18)
 
 data1 <- select(data, Date, Temp1, Temp2, Temp3)%>%
         mutate(Temp1 = as.numeric(as.character(Temp1)), 
