@@ -45,7 +45,7 @@ boxplot(Weight ~ Year,
         whisklty = 1,
         range = 0,
         col = colors)
-abline(h=85, lty=2, col="red")
+abline(h=88, lty=2, col="red")
 
 #Waist to Hip Ratio
 ggplot(weight5[1000:nrow(weight5),], aes(x = Date, y = w2h)) + 
