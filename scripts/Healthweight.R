@@ -21,13 +21,17 @@ weight5$fat <- 1.2*weight5$BMI +0.23*weight5$Age - 16.2
 
 dev.off()
 
+days_x <- nrow(weight2)
+
 #Weight over 2015 (-ish)
 ggplot(weight2, aes(Date,Weight)) + 
-  geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 4) + 
-  geom_smooth(method=loess, colour = "darkgreen") + 
-  ggtitle("Weight") +
-  ylim(83,98) +
-        theme_bw()
+        geom_rect(aes(ymin = 85, ymax = 88, xmin = weight2$Date[1], xmax = weight2$Date[days_x]), fill = "grey80") +
+        geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 4) + 
+        geom_smooth(method=loess, colour = "darkgreen") + 
+        labs(title = "Weight, 2015 onwards", y="kg", x="") +
+        theme_bw() +
+        scale_y_continuous(breaks = seq(82, 98, by=1)) 
+        
 
 
 #Weight over longer time
