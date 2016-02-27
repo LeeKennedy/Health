@@ -73,10 +73,11 @@ ggplot(weight5[1000:nrow(weight5),], aes(x = Date, y = BMI)) +
         geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 4) + 
         geom_smooth(colour = "blue") +
         ggtitle("BMI") +
-        scale_y_continuous(limits = c(23, 29)) +
+        scale_y_continuous(limits = c(23, 30)) +
+        #scale_y_continuous(breaks = seq(23, 30, by=1)) +
         geom_abline(slope=0, intercept=24, lty=2, col="blue") +
         geom_abline(slope=0, intercept=25, lty=2, col="red") +
-        theme_bw()
+        theme_bw() 
 
 # Percent Fat 2015
 # Adult body fat % = (1.20 × BMI) + (0.23 × Age) − (10.8 × sex) − 5.4
