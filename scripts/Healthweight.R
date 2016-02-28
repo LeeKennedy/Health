@@ -28,7 +28,7 @@ ggplot(weight2, aes(Date,Weight)) +
         geom_rect(aes(ymin = 85, ymax = 88, xmin = weight2$Date[1], xmax = weight2$Date[days_x]), fill = "grey80") +
         geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 4) + 
         geom_smooth(method=loess, colour = "darkgreen") + 
-        labs(title = "Weight, 2015 onwards", y="kg", x="") +
+        labs(title = "Weight, January 2015 onwards", y="kg", x="") +
         theme_bw() +
         scale_y_continuous(breaks = seq(82, 98, by=1)) 
         
@@ -50,6 +50,7 @@ boxplot(Weight ~ Year,
         range = 0,
         col = colors)
 abline(h=88, lty=2, col="red")
+abline(h=85, lty=2, col="red")
 
 #Waist to Hip Ratio
 ggplot(weight5[1000:nrow(weight5),], aes(x = Date, y = w2h)) + 
