@@ -11,7 +11,7 @@ cache("weight2")
 
 #Weight 
 plot_wt <- ggplot(weight2, aes(Date,Weight)) + 
-                geom_rect(aes(ymin = 85, ymax = 88, xmin = weight2$Date[1], xmax = weight2$Date[120]), fill = "grey80") +
+                geom_rect(aes(ymin = 85, ymax = 87, xmin = weight2$Date[1], xmax = weight2$Date[120]), fill = "grey80") +
                 geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 6) + 
                 geom_smooth(method=loess, colour = "darkgreen", size = 2) + 
                 geom_hline(yintercept = 95.3, lty=2, col="red") +
