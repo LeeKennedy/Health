@@ -21,7 +21,7 @@ plot_wt <- ggplot(weight2, aes(Date,Weight)) +
                 theme_bw() +
                 annotate("text", x = weight2$Date[103], y = 90, label = "Holiday") +
                 scale_y_continuous(breaks = seq(82, 96),1) +
-                ggtitle("Weight since DTS Greatest Loser Challenge started...\n") + 
+                labs(title="Weight since DTS Greatest Loser Challenge started...\n", y="") + 
                 theme(plot.title = element_text(size = 18)) 
 plot_wt
 
