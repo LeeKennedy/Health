@@ -62,18 +62,18 @@ wt_plot <- ggplot(weight1, aes(Date,Weight)) +
 plot(wt_plot)
 ```
 
-Looking more closely at that challenge and its impact on my weight, we see that, having peaked (or troughed) in early March there is a trend upwards.  After my birthday^[Tomorrow] effort must be put into reversing this trend:
+Looking more closely at that challenge and its impact on my weight, we see that, having peaked (or troughed) in early March there is a trend upwards.  After my birthday^[March 29th] effort must be put into reversing this trend:
 
 ```{r, echo = FALSE, warning = FALSE, fig.cap="In this chart, the verticle dotted red line indicates the end of the DTS Biggest Loser Challenge.  The horizontal dotted red line represents the weight at the start of the challenge.", fig.show='hold', cache=TRUE}
 weight <- read_excel("/Users/Study Old/Documents/GitHub/Health/rawdata/Healthcheck.xlsx", sheet=1)
 weight2 <- weight %>%
         filter(Date >"2015-11-30") %>%
-        filter(Date <"2016-03-29")
+        filter(Date <"2016-04-30")
 
 #Weight 
 plot_wt <- ggplot(weight2, aes(Date,Weight)) + 
-                geom_rect(aes(ymin = 85, ymax = 87, xmin = weight2$Date[1], xmax = weight2$Date[120]), fill = "grey80") +
-                geom_rect(aes(ymin = 87, ymax = 88, xmin = weight2$Date[1], xmax = weight2$Date[120]), fill = "grey90") +
+                geom_rect(aes(ymin = 85, ymax = 87, xmin = weight2$Date[1], xmax = weight2$Date[151]), fill = "grey80") +
+                geom_rect(aes(ymin = 87, ymax = 88, xmin = weight2$Date[1], xmax = weight2$Date[151]), fill = "grey90") +
                 geom_rect(aes(ymin = 85, ymax = 96, xmin = weight2$Date[101], xmax = weight2$Date[105]), fill = "moccasin") +
                 geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 6) + 
                 geom_smooth(method=loess, colour = "darkgreen", size = 2) + 
