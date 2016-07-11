@@ -1,6 +1,12 @@
-library(ProjectTemplate)
-load.project()
+# Clean environment ------------------------------------------------------
+rm(list=ls())
 
+# Packages----------------------------------------------------------------
+library(ggplot2)
+library(readxl)
+library(dplyr)
+
+# Import data ------------------------------------------------------------
 data <- read_excel("rawdata/Healthcheck.xlsx",2, skip=18)
 
 data1 <- select(data, Date, Temp1, Temp2, Temp3)%>%
@@ -16,6 +22,7 @@ data1 <- na.omit(data1)
 data3 <- gather(data1, Type, Reading, -Date)
 
 dev.off()
+# Plot temperature -------------------------------------------------------
 plot <- ggplot(data3, aes(Date, Reading, colour = Type)) +
         geom_point(size=4, shape=21) +
         geom_smooth(lwd=1) +

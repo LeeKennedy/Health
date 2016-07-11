@@ -1,6 +1,12 @@
-library(ProjectTemplate)
-load.project()
+# Clean environment ------------------------------------------------------
+rm(list=ls())
 
+# Packages----------------------------------------------------------------
+library(ggplot2)
+library(readxl)
+library(dplyr)
+
+# Import data ------------------------------------------------------------
 data <- read_excel("rawdata/Healthcheck.xlsx",2, skip=18)
 
 data1 <- select(data, everything())%>%
@@ -14,6 +20,7 @@ data2$Date <- ymd(data2$Date)
 
 data3 <- gather(data2, Type, Reading, -Date)
 
+# Plot blood pressure ----------------------------------------------------
 plot <- ggplot(data3, aes(Date, Reading, colour = Type)) +
         geom_point(size=4, shape=21) +
         geom_smooth(lwd=1) +

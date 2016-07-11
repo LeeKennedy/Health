@@ -1,9 +1,14 @@
-library(ProjectTemplate)
-load.project()
+# Clean environment ------------------------------------------------------
+rm(list=ls())
 
+# Packages----------------------------------------------------------------
+library(ggplot2)
+library(readxl)
+library(dplyr)
+
+# Import data ------------------------------------------------------------
 weight <- read_excel("rawdata/Healthcheck.xlsx", sheet=1)
 
-#weight <- read.csv("Healthcheck.csv", header = TRUE)
 weight1 <- weight[,c(1,2,8)]
 weight1 <- na.omit(weight1)
 weight2 <- weight1[1660:nrow(weight1),]
@@ -23,7 +28,7 @@ dev.off()
 
 days_x <- nrow(weight2)
 
-#Weight over 2015 (-ish)
+# Weight over 2015 (-ish) ------------------------------------------------
 ggplot(weight2, aes(Date,Weight)) + 
         geom_rect(aes(ymin = 85, ymax = 87, xmin = weight2$Date[1], xmax = weight2$Date[days_x]), fill = "grey80") +
         geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 4) + 
@@ -34,7 +39,7 @@ ggplot(weight2, aes(Date,Weight)) +
         
 
 
-#Weight over longer time
+# Weight over longer time -------------------------------------------------
 ggplot(weight1, aes(Date,Weight)) + 
         geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 4) +
   geom_smooth(colour = "darkgreen") + 
@@ -42,6 +47,7 @@ ggplot(weight1, aes(Date,Weight)) +
   ylim(83,105) +
         theme_bw()
 
+# Boxplots of yearly weight spread ---------------------------------------
 colors = c(rep("cornflowerblue",10),rep("limegreen",1))
 boxplot(Weight ~ Year, 
         data = weight3,
@@ -51,7 +57,7 @@ boxplot(Weight ~ Year,
         col = colors)
 
 
-#Waist to Hip Ratio
+#Waist to Hip Ratio ------------------------------------------------------
 ggplot(weight5[1000:nrow(weight5),], aes(x = Date, y = w2h)) + 
         geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 4) +
         geom_smooth(colour = "darkgreen") +
@@ -59,7 +65,7 @@ ggplot(weight5[1000:nrow(weight5),], aes(x = Date, y = w2h)) +
         geom_abline(slope=0, intercept=0.9, lty=2, col="red") +
         theme_bw()
 
-#Waist to Hip Ratio 2015
+#Waist to Hip Ratio 2015 -------------------------------------------------
 ggplot(weight5[3000:nrow(weight5),], aes(x = Date, y = w2h)) + 
         geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 4) +
         geom_smooth(colour = "darkgreen") +
@@ -68,7 +74,7 @@ ggplot(weight5[3000:nrow(weight5),], aes(x = Date, y = w2h)) +
         geom_abline(slope=0, intercept=0.9, lty=2, col="red") +
         theme_bw()
 
-#BMI
+# BMI --------------------------------------------------------------------
 ggplot(weight5[1000:nrow(weight5),], aes(x = Date, y = BMI)) + 
         geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 4) + 
         geom_smooth(colour = "blue") +
@@ -79,7 +85,7 @@ ggplot(weight5[1000:nrow(weight5),], aes(x = Date, y = BMI)) +
         geom_abline(slope=0, intercept=25, lty=2, col="red") +
         theme_bw() 
 
-# Percent Fat 2015
+# Percent Fat 2015 -------------------------------------------------------
 # Adult body fat % = (1.20 × BMI) + (0.23 × Age) − (10.8 × sex) − 5.4
 ggplot(weight5[3000:nrow(weight5),], aes(x = Date, y = fat)) + 
         geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 4) +
