@@ -5,6 +5,7 @@ rm(list=ls())
 library(ggplot2)
 library(readxl)
 library(dplyr)
+library(lubridate)
 
 # Import data ------------------------------------------------------------
 weight <- read_excel("rawdata/Healthcheck.xlsx", sheet=1)
@@ -17,7 +18,7 @@ weight3 <- na.omit(weight3)
 weight4 <-weight[,c(1,2,8:10)]
 height <- 1.88
 BMI <- (weight4$Weight)/(height^2)
-w2h <- weight4$Waist/weight4$Hips
+w2h <- weight4$Waist/weight4$Hips 
 weight5 <- cbind(weight4, BMI,w2h)
 weight5$Age = year(weight5$Date)-1954
 
@@ -85,12 +86,3 @@ ggplot(weight5[1000:nrow(weight5),], aes(x = Date, y = BMI)) +
         geom_abline(slope=0, intercept=25, lty=2, col="red") +
         theme_bw() 
 
-# Percent Fat 2015 -------------------------------------------------------
-# Adult body fat % = (1.20 × BMI) + (0.23 × Age) − (10.8 × sex) − 5.4
-ggplot(weight5[3000:nrow(weight5),], aes(x = Date, y = fat)) + 
-        geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 4) +
-        geom_smooth(colour = "darkgreen") +
-        scale_y_continuous(limits = c(25,32)) +
-        ggtitle("Percent Body Fat") +
-        geom_abline(slope=0, intercept=0.9, lty=2, col="red") +
-        theme_bw()

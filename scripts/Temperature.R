@@ -5,6 +5,8 @@ rm(list=ls())
 library(ggplot2)
 library(readxl)
 library(dplyr)
+library(lubridate)
+library(tidyr)
 
 # Import data ------------------------------------------------------------
 data <- read_excel("rawdata/Healthcheck.xlsx",2, skip=18)
