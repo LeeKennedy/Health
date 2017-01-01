@@ -49,7 +49,7 @@ ggplot(weight1, aes(Date,Weight)) +
         theme_bw()
 
 # Boxplots of yearly weight spread ---------------------------------------
-colors = c(rep("cornflowerblue",10),rep("limegreen",1))
+colors = c(rep("cornflowerblue",11),rep("limegreen",1))
 boxplot(Weight ~ Year, 
         data = weight3,
         ylim = c(83,101),
