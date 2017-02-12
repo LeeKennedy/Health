@@ -1,18 +1,18 @@
 ---
 title: "Health Report"
-subtitle: "A Review of Lee Kennedy's Health"
 author: "Lee Kennedy"
-date: "`r Sys.Date()`"
+date: '`r Sys.Date()`'
 output:
-  tufte::tufte_html: default
-  tufte::tufte_handout:
-    citation_package: natbib
-    latex_engine: xelatex
   tufte::tufte_book:
     citation_package: natbib
     latex_engine: xelatex
-bibliography: skeleton.bib
+  tufte::tufte_handout:
+    citation_package: natbib
+    latex_engine: xelatex
+  tufte::tufte_html: default
 link-citations: yes
+subtitle: A Review of Lee Kennedy's Health
+bibliography: skeleton.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -97,7 +97,7 @@ The yearly change is readily seen in a progressive boxplot:
 
 weight3 <- weight[,c(4,8)]
 weight3 <- na.omit(weight3)
-colors = c(rep("cornflowerblue",10),rep("limegreen",1))
+colors = c(rep("cornflowerblue",11),rep("limegreen",1))
 boxplot(Weight ~ Year, 
         data = weight3,
         ylim = c(83,101),
@@ -112,12 +112,14 @@ boxplot(Weight ~ Year,
 One of the metrics that is monitored is the 'waist to hip' ratio.  The general guideline is that, for a man, it should be less than 0.9.
 
 ```{r, echo=FALSE, warning=FALSE}
-
-weight4 <-weight[,c(1,2,8:10)]
+weight4 <- na.omit(weight[,c(1,2,8:10)])
 w2h <- weight4$Waist/weight4$Hips
-weight5 <- cbind(weight4, w2h)
+weight4$w2h <- w2h
+```
 
-whr <- ggplot(weight5[3000:nrow(weight5),], aes(x = Date, y = w2h)) + 
+```{r}
+
+whr <- ggplot(weight4[1000:nrow(weight4),], aes(x = Date, y = w2h)) + 
         geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 4) +
         geom_smooth(colour = "darkgreen") +
         scale_y_continuous(limits = c(0.88,0.99)) +
