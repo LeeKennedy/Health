@@ -6,18 +6,8 @@ library(tidyverse)
 library(readxl)
 library(lubridate)
 
-# Functions --------------------------------------------------------------
 
-remove_outliers <- function(x, na.rm = TRUE, ...) {
- qnt <- quantile(x, probs=c(.25, .75), na.rm = na.rm, ...)
-  H <- 1.5 * IQR(x, na.rm = na.rm)
- y <- x
- y[x < (qnt[1] - H)] <- NA
- y[x > (qnt[2] + H)] <- NA
- y
-}
-
-# Data Input -------------------------------------------------------------
+# Data Input 1 -------------------------------------------------------------
 wt_data <- read_excel("~/Documents/GitHub/Health/rawdata/Healthcheck.xlsx", 
                       sheet = "Daily Data")
 
@@ -32,3 +22,37 @@ wt_data2 <- wt_data2 %>%
 # Export Data -------------------------------------------------------
 
 write_csv(wt_data2, "~/Documents/GitHub/Credo/data/wt_data.csv")
+
+# Data Input 2 -------------------------------------------------------------
+bp_data <- read_excel("~/Documents/GitHub/Health/rawdata/Healthcheck.xlsx", 
+                       sheet = "BP, Pulse & Temp")
+
+
+# Data Cleaning ----------------------------------------------------------
+
+bp_data2 <- bp_data[, c(1,14,15)]
+bp_data2$Year <- year(bp_data2$Date)
+
+bp_data2 <- bp_data2 %>% 
+        filter(Year == 2017)
+bp_data2 <- bp_data2[,c(4,2,3)]
+
+# Export Data -------------------------------------------------------
+
+write_csv(bp_data2, "~/Documents/GitHub/Credo/data/bp_data.csv")
+
+# Data Input 3 -------------------------------------------------------------
+chol_data <- read_excel("~/Documents/GitHub/Health/rawdata/Healthcheck.xlsx", 
+                        sheet = "Tests")
+
+
+# Data Cleaning ----------------------------------------------------------
+
+chol_data2 <- chol_data[, c(1:8)]
+
+
+
+# Export Data -------------------------------------------------------
+
+write_csv(chol_data2, "~/Documents/GitHub/Credo/data/chol_data.csv")
+
