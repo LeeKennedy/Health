@@ -35,11 +35,15 @@ bp_data2$Year <- year(bp_data2$Date)
 
 bp_data2 <- bp_data2 %>% 
         filter(Year == 2017)
-bp_data2 <- bp_data2[,c(4,2,3)]
+bp_data2 <- bp_data2[,c(1,4,2,3)]
+colnames(bp_data2)[3] <- "Systolic"
+colnames(bp_data2)[4] <- "Diastolic"
+
+bp_data3 <- tidyr::gather(data = bp_data2, key = Reading, value = Value, na.rm = FALSE, Systolic, Diastolic)
 
 # Export Data -------------------------------------------------------
 
-write_csv(bp_data2, "~/Documents/GitHub/Credo/data/bp_data.csv")
+write_csv(bp_data3, "~/Documents/GitHub/Credo/data/bp_data.csv")
 
 # Data Input 3 -------------------------------------------------------------
 chol_data <- read_excel("~/Documents/GitHub/Health/rawdata/Healthcheck.xlsx", 
