@@ -10,7 +10,7 @@ library(dplyr)
 weight <- read_excel("rawdata/Healthcheck.xlsx", sheet=1)
 weight2 <- weight %>%
         filter(Date >"2015-11-30") %>%
-        filter(Date <"2017-05-31")
+        filter(Date <"2017-08-28")
 cache("weight2")
 
 
