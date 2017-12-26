@@ -19,9 +19,12 @@ wt_data2 <- wt_data[, c(1:11)]
 wt_data2 <- wt_data2 %>% 
         filter(Year == 2017)
 
+wt_data3 <- wt_data[, c(1:11)]
+
 # Export Data -------------------------------------------------------
 
 write_csv(wt_data2, "~/Documents/GitHub/Credo/data/wt_data.csv")
+write_csv(wt_data3, "~/Documents/GitHub/Credo/data/wt_data_all.csv")
 
 # Data Input 2 -------------------------------------------------------------
 bp_data <- read_excel("~/Documents/GitHub/Health/rawdata/Healthcheck.xlsx", 
