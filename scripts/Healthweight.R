@@ -30,7 +30,7 @@ dev.off()
 days_x <- nrow(weight2)
 
 # Weight over 2015 (-ish) ------------------------------------------------
-ggplot(weight2, aes(Date,Weight)) + 
+weight_2015 <- ggplot(weight2, aes(Date,Weight)) + 
         geom_rect(aes(ymin = 86, ymax = 88, xmin = weight2$Date[1], xmax = weight2$Date[days_x]), fill = "grey80") +
         geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 4) + 
         geom_smooth(method=loess, colour = "darkgreen") + 
@@ -38,18 +38,20 @@ ggplot(weight2, aes(Date,Weight)) +
         theme_bw() +
         scale_y_continuous(breaks = seq(82, 98, by=1)) 
         
-
+weight_2015
 
 # Weight over longer time -------------------------------------------------
-ggplot(weight1, aes(Date,Weight)) + 
+all_weight <- ggplot(weight1, aes(Date,Weight)) + 
         geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 4) +
   geom_smooth(colour = "darkgreen") + 
   ggtitle("Weight") +
   ylim(83,105) +
         theme_bw()
 
+all_weight
+
 # Boxplots of yearly weight spread ---------------------------------------
-colors = c(rep("cornflowerblue",11),rep("limegreen",1))
+colors = c(rep("cornflowerblue",12),rep("limegreen",1))
 boxplot(Weight ~ Year, 
         data = weight3,
         ylim = c(83,101),
@@ -59,15 +61,17 @@ boxplot(Weight ~ Year,
 
 
 #Waist to Hip Ratio ------------------------------------------------------
-ggplot(weight5[1000:nrow(weight5),], aes(x = Date, y = w2h)) + 
+w2h_plot <- ggplot(weight5[1000:nrow(weight5),], aes(x = Date, y = w2h)) + 
         geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 4) +
         geom_smooth(colour = "darkgreen") +
         ggtitle("Waist to Hip Ratio") +
         geom_abline(slope=0, intercept=0.9, lty=2, col="red") +
         theme_bw()
 
+w2h_plot
+
 #Waist to Hip Ratio 2015 -------------------------------------------------
-ggplot(weight5[3000:nrow(weight5),], aes(x = Date, y = w2h)) + 
+w2h_2015 <- ggplot(weight5[3000:nrow(weight5),], aes(x = Date, y = w2h)) + 
         geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 4) +
         geom_smooth(colour = "darkgreen") +
         scale_y_continuous(limits = c(0.88,0.99)) +
@@ -75,8 +79,10 @@ ggplot(weight5[3000:nrow(weight5),], aes(x = Date, y = w2h)) +
         geom_abline(slope=0, intercept=0.9, lty=2, col="red") +
         theme_bw()
 
+w2h_2015
+
 # BMI --------------------------------------------------------------------
-ggplot(weight5[1000:nrow(weight5),], aes(x = Date, y = BMI)) + 
+bmi_plot <- ggplot(weight5[1000:nrow(weight5),], aes(x = Date, y = BMI)) + 
         geom_point(shape = 21, fill = "cornflowerblue", colour = "blue", size = 4) + 
         geom_smooth(colour = "blue") +
         ggtitle("BMI") +
@@ -85,4 +91,6 @@ ggplot(weight5[1000:nrow(weight5),], aes(x = Date, y = BMI)) +
         geom_abline(slope=0, intercept=24, lty=2, col="blue") +
         geom_abline(slope=0, intercept=25, lty=2, col="red") +
         theme_bw() 
+
+bmi_plot
 

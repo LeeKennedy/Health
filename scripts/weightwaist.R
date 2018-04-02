@@ -1,5 +1,12 @@
-library(ProjectTemplate)
-load.project()
+# Clean environment ------------------------------------------------------
+rm(list=ls())
+
+# Packages----------------------------------------------------------------
+library(ggplot2)
+library(readxl)
+library(dplyr)
+library(lubridate)
+library(tidyr)
 
 weight <- read_excel("rawdata/Healthcheck.xlsx", sheet=1)
 w2w <- na.omit(weight[,c(8,9)])

@@ -1,7 +1,14 @@
-library(ProjectTemplate)
-load.project()
+# Clean environment ------------------------------------------------------
+rm(list=ls())
 
-psa <- read_excel("rawdata/Healthcheck.xlsx", sheet=3)
+# Packages----------------------------------------------------------------
+library(ggplot2)
+library(readxl)
+library(dplyr)
+library(lubridate)
+library(tidyr)
+
+psa <- read_excel("rawdata/Healthcheck.xlsx", sheet="Tests")
 
 psa <- na.omit(psa[,c(1,7)])
 

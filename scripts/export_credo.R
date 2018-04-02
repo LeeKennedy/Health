@@ -33,16 +33,17 @@ bp_data <- read_excel("~/Documents/GitHub/Health/rawdata/Healthcheck.xlsx",
 
 # Data Cleaning ----------------------------------------------------------
 
-bp_data2 <- bp_data[, c(1,14,15)]
+bp_data2 <- bp_data[, c(1,14,15,16)]
 bp_data2$Year <- year(bp_data2$Date)
 
 bp_data2 <- bp_data2 %>% 
-        filter(Year == 2017)
-bp_data2 <- bp_data2[,c(1,4,2,3)]
+        filter(Year == 2018)
+bp_data2 <- bp_data2[,c(1,5,2,3,4)]
 colnames(bp_data2)[3] <- "Systolic"
 colnames(bp_data2)[4] <- "Diastolic"
+colnames(bp_data2)[5] <- "Pulse"
 
-bp_data3 <- tidyr::gather(data = bp_data2, key = Reading, value = Value, na.rm = FALSE, Systolic, Diastolic)
+bp_data3 <- tidyr::gather(data = bp_data2, key = Reading, value = Value, na.rm = FALSE, Systolic, Diastolic, Pulse)
 
 # Export Data -------------------------------------------------------
 

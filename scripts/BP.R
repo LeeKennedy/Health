@@ -15,7 +15,7 @@ data1 <- select(data, everything())%>%
         mutate(Systolic = as.numeric(as.character(A)), 
                Diastolic = as.numeric(as.character(B)))
 
-data2 <- data1[,c(1,22,23)]
+data2 <- data1[,c(1,23,24)]
 data2 <- na.omit(data2)
 
 data2$Date <- ymd(data2$Date)

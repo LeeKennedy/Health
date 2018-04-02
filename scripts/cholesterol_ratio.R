@@ -21,7 +21,7 @@ remove_outliers <- function(x, na.rm = TRUE, ...) {
 
 # Data Input -------------------------------------------------------------
 
-cholesterol <- read_excel("/Users/Study Old/Documents/GitHub/Health/rawdata/Healthcheck.xlsx", sheet=3)
+cholesterol <- read_excel("/Users/Study Old/Documents/GitHub/Health/rawdata/Healthcheck.xlsx", sheet= "Tests")
 
 # Data Cleaning ----------------------------------------------------------
 cholesterol <- na.omit(cholesterol[,c(1,2,4,5)])
